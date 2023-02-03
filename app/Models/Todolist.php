@@ -9,4 +9,8 @@ class Todolist extends Model
 {
     use HasFactory;
     protected $fillable = ['content'];
+
+    protected $casts = [
+        'complete' => 'boolean',
+    ];
 }
