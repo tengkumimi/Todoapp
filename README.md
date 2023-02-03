@@ -1,7 +1,13 @@
 ## Laravel Todo App
-test branch
+
 This is simple to do app. 
 Built on Laravel Framework 9.48.0 and PHP 8.2.1.
+
+Functions:
+1. Add todolist
+2. Delete todolist
+3. Mark as Completed/Uncompleted
+4. Count pending task
 
 ## Installation
 
@@ -51,5 +57,15 @@ php artisan serve
 
 Then go to `http://localhost:8000` from your browser and see the app.
 
-![todoss](https://user-images.githubusercontent.com/43512240/214790040-7e8ed839-6675-489e-a706-2615e96bf963.png)
+No task:
+![Alt text](public/no-task.png)
+
+With task:
+![](public/with-task.png)
+
+Completed task:
+![Alt text](public/complete-task.png)
+
+Delete task:
+![Alt text](public/delete-task.png)
 
