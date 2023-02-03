@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Todolist;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class TodolistController extends Controller
 {
@@ -14,8 +15,10 @@ class TodolistController extends Controller
      */
     public function index()
     {
-        $todolists = Todolist::all();
-        return view('home', compact('todolists'));
+        $todolists = Todolist::orderBy('id', 'desc')->get();
+        $incomplete =  Todolist::where('complete', 0)->get();
+        return view('home', compact('todolists', 'incomplete'));
+        
     }
     
     public function store(Request $request)
@@ -26,6 +29,18 @@ class TodolistController extends Controller
 
         Todolist::create($data);
         return back();
+    }
+
+    public function update($id)
+    {
+        $todolist = Todolist::findOrFail($id);
+        $todolist->complete = !$todolist->complete;
+        $todolist->save();
+
+        return redirect()
+            ->route('index')
+            ->with('flash_notification.message', 'Todo updated successfully')
+            ->with('flash_notification.level', 'success');
     }
     
     public function destroy(Todolist $todolist)
